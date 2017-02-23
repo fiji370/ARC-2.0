@@ -99,7 +99,48 @@ def matchSnippets(document, keywords):
     smartKeys = set(smartKeys)
     smartKeys = list(smartKeys)
     
-    return smartKeys
+    docSents = sent_tokenize(document)
+    secondMatches = [i for i in docSents for x in word_tokenize(i) if x in smartKeys]
+    
+    thirdMatches = []
+    fourthMatches = []
+    
+    for i in secondMatches:
+        ratioGood = 0
+        ratioBad = 0
+        transientList = []
+        
+        for x in pos_tag(word_tokenize(i)):
+            transientList.append(x[1])
+            
+        ratioBad += transientList.count("PRP")
+        ratioGood += len(word_tokenize(i))
+        for x in smartKeys:
+            ratioGood += word_tokenize(i).count(x)
+        try:
+            ratioFinal = ratioGood / ratioBad
+        except:
+            ratioFinal = 0
+        thirdMatches.append((i, ratioFinal))
+    thirdMatches.sort(key= lambda x:x[1])
+    thirdMatches = [i[0] for i in reversed(thirdMatches)]
+    
+    for i in thirdMatches:
+        transientList = []
+        try:
+            transientList.append(" ".join(docSents[docSents.index(i) - 2:docSents.index(i)]))
+        except:
+            transientList.append(i)
+            pass
+        try:
+            transientList.append(" ".join(docSents[docSents.index(i):docSents.index(i) + 2]))
+        except:
+            pass
+        fourthMatches.append(" ".join(transientList))
+        continue
+    
+    finalMatched = '\n\n'.join(fourthMatches)
+    return str(finalMatched)
 
 def presentable(snippet):
     pass

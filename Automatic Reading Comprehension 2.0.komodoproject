@@ -2,5 +2,9 @@
 <!-- Komodo Project File - DO NOT EDIT -->
 <project id="1e73f712-c886-432d-989e-a747fc3f4230" kpf_version="5" name="Automatic Reading Comprehension 2.0.komodoproject">
 <preference-set idref="1e73f712-c886-432d-989e-a747fc3f4230" id="project" preftype="project">
+  <string relative="path" id="import_dirname"></string>
+  <string id="last_local_directory">None</string>
+  <string id="last_remote_directory">None</string>
+  <long id="prefs_version">1</long>
 </preference-set>
 </project>
