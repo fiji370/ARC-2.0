@@ -7,5 +7,5 @@ and inputs any question about the input text. The bot will then extract keywords
 Meaningful sentences are found using pronoun to noun to length ratios. Answers are scored based on their frequency of keywords, as well
 as their lack of frequent pronouns. A snippet from the text is then returned, answering the question.
 
-The latest build was uploaded around 1:30 PM GMT.
+The latest build was uploaded around 11:30 PM GMT.
 
